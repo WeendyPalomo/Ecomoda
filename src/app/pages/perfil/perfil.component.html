@@ -29,7 +29,7 @@
     </div>
 
     <h3  *ngIf="!ingresarEnable" class="subtitulo encabezado" style="padding-left: 20px;">Crear cuenta</h3>
-    <h3  *ngIf="ingresarEnable" class="subtitulo encabezado text-center" style="padding-left: 20px; text-align-last: center">Inicia sesion o crea tu cuenta</h3>
+    <h3  *ngIf="ingresarEnable" class="subtitulo encabezado text-center" style="padding-left: 20px; text-align-last: left">Inicia sesion o crea tu cuenta</h3>
 
     <ion-item>
       <ion-label   class="normal" position="floating" >
@@ -71,6 +71,9 @@
     <ion-item *ngIf="!ingresarEnable" class="msgContrasena">
       <ion-label class="normal">Minimo 8 caracteres incluyendo minusculas, <br> mayusculas y caracteres especiales.</ion-label>
     </ion-item>
+
+   <ion-label style="text-align: center; margin: 15px;" *ngIf="ingresarEnable" class="normal" color="dark">Olvidaste tu contrasena?</ion-label>
+
   
     <div style="text-align: center; margin: 10px;">
 
