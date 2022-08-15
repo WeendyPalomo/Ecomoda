@@ -107,8 +107,7 @@ export class CarritoService {
            this.pedido.productos.push(add);
         }
      } else {
-          this.router.navigate(['/perfil']);
-          return;
+          return this.router.navigate(['/perfil']);
      }
      this.pedido$.next(this.pedido);
      console.log('en add pedido -> ', this.pedido);
@@ -120,6 +119,7 @@ export class CarritoService {
           this.presentToast('Añadido con exito!')
 
      }).catch(error=>{
+      this.loading.dismiss();
       this.presentToastERROR('Error: No se pudo agregar.')
     });
     
