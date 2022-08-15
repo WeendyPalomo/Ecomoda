@@ -1,0 +1,20 @@
+<ion-card>
+  <ion-img class="img-producto" [src]="producto.foto"></ion-img>
+  <ion-item lines="full">
+    <ion-label class="subtitulo">{{producto.nombre}}
+      <br>
+      <p class="normal !important">Categoria: {{producto.categoria.nombreSub}}</p> 
+    </ion-label>
+   
+
+  </ion-item>
+  <p class="precio">{{producto.precio}} $</p>
+  <p class="normal">{{producto.descripcion}}</p>
+  
+  <ion-icon (click)="addCarrito()" class="icon-producto" name="add-outline"></ion-icon>
+
+  <p class="normal comentarios" (click)="openModal()">comentarios 
+    <ion-icon class="icon" name="chatbubble-ellipses-outline"></ion-icon>
+  </p>
+  
+</ion-card>

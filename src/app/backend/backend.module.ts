@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SetProductosComponent } from './set-productos/set-productos.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
+import { RouterModule } from '@angular/router';
 
-import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule
+  declarations: [
+    SetProductosComponent
   ],
-  declarations: [HomePage]
+  imports: [
+    RouterModule,
+    CommonModule,
+    IonicModule,
+    FormsModule
+  ]
 })
-export class HomePageModule {}
+export class BackendModule { }

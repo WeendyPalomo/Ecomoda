@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo">
+        Productos
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/carrito']" >
+        <ion-icon color="dark" slot="icon-only"  name="cart-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="buscadorPrenda">
+    <div class="buscar">
+    <ion-toolbar>
+        <ion-searchbar mode="ios" (ionChange)="buscarProducto($event)" class="normal" placeholder="Buscar"></ion-searchbar>
+    </ion-toolbar>
+  </div>
+  </div>
+
+  <div fullscreen *ngFor="let producto of productosBuscados">
+    <app-view-producto [producto]="producto"></app-view-producto>
+  </div>
+
+
+  
+</ion-content>

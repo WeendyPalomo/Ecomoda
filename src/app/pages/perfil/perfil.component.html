@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo ion-text-wrap">
+        Mi Cuenta
+    </ion-title>
+    
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon color="dark" slot="icon-only"  name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/home']" >
+        <ion-icon name="home-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- ahora -->
+<ion-content>
+
+  <div *ngIf="!uid.length">
+
+    <div class="imagenIniciarS" style="text-align-last: center;">
+      <img *ngIf="ingresarEnable" src="../../../assets/img/iniciasSesion2.png">
+    </div>
+
+    <h3  *ngIf="!ingresarEnable" class="subtitulo encabezado" style="padding-left: 20px;">Crear cuenta</h3>
+    <h3  *ngIf="ingresarEnable" class="subtitulo encabezado text-center" style="padding-left: 20px; text-align-last: center">Inicia sesion o crea tu cuenta</h3>
+
+    <ion-item>
+      <ion-label   class="normal" position="floating" >
+          Correo
+      </ion-label>
+      <ion-input name="email"  [(ngModel)]="cliente.correo" clearInput class="normal"  type="text" inputmode="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!ingresarEnable">
+      <ion-label   class="normal" position="floating">
+          Nombre:
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.nombres" class="normal" type="text" inputmode="text">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!ingresarEnable">
+      <ion-label class="normal" position="floating"> Apellidos: </ion-label>
+      <ion-input [(ngModel)]="cliente.apellidos" class="normal" type="string" inputmode="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!ingresarEnable">
+      <ion-label class="normal" position="floating"> Direccion: </ion-label>
+      <ion-input [(ngModel)]="cliente.direccion" class="normal" type="string" inputmode="text"></ion-input>
+    </ion-item>
+   
+    <ion-item *ngIf="!ingresarEnable">
+      <ion-label   class="normal" position="floating">
+          Celular:
+      </ion-label>
+      <ion-input [(ngModel)]="cliente.celular" class="normal"  type="number" >
+      </ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="normal" position="floating"> Contrasena: </ion-label>
+      <ion-input [(ngModel)]="cliente.contrasena" class="normal" type="password" inputmode="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!ingresarEnable" class="msgContrasena">
+      <ion-label class="normal">Minimo 8 caracteres incluyendo minusculas, <br> mayusculas y caracteres especiales.</ion-label>
+    </ion-item>
+  
+    <div style="text-align: center; margin: 10px;">
+
+      <ion-button  *ngIf="!ingresarEnable" (click)="registrarse()"  class="normal" color="dark">CREAR CUENTA</ion-button>
+      <br>
+      <ion-label  *ngIf="!ingresarEnable" (click)="ingresarEnable = true"  class="titulo" color="dark">o iniciar sesion</ion-label>
+      <ion-button  *ngIf="ingresarEnable" (click)="ingresar()"  class="normal" color="dark">INICIAR SESION</ion-button>
+
+      <div class="registrarBoton" style="text-align: center; margin: 10px;">
+        <ion-label *ngIf="ingresarEnable" class="normal">¿No tienes una cuenta?</ion-label>
+        <ion-label  *ngIf="ingresarEnable" (click)="ingresarEnable = false"  class="titulo" color="dark"> Registrate</ion-label>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div *ngIf="uid.length" >
+
+    <h3 class="subtitulo encabezado" style="padding-left: 20px;"> Hola {{cliente.nombres}} !</h3>
+    <ion-item>
+      <ion-label class="normal" position="floating"> Nombres: </ion-label>
+      <ion-input [(ngModel)]="cliente.nombres" class="normal" type="string" inputmode="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="normal" position="floating"> Apellidos: </ion-label>
+      <ion-input [(ngModel)]="cliente.apellidos" class="normal" type="string" inputmode="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="normal" position="floating"> Direccion: </ion-label>
+      <ion-input [(ngModel)]="cliente.direccion" class="normal" type="string" inputmode="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="normal" position="floating"> Celular: </ion-label>
+      <ion-input [(ngModel)]="cliente.celular" class="normal" type="string" inputmode="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="normal"> Correo: {{cliente.correo}} </ion-label>
+    </ion-item>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <ion-button  (click)="guardarUser()"  class="normal" color="dark">ACTUALIZAR</ion-button>
+    </div>
+
+
+    <div class="infoApp">
+      
+      <ion-icon class="iconos" name="call"></ion-icon> 
+      <ion-label [routerLink]="['/home']"  class="titulo" color="dark"> Contactanos</ion-label> <br><br>
+
+      <ion-icon class="iconos" name="help"></ion-icon>
+      <ion-label [routerLink]="['/home']"  class="titulo" color="dark"> Quienes Somos</ion-label> <br><br>
+
+      <ion-icon class="iconos" name="power"></ion-icon>
+      <ion-label  (click)="salir()" class="titulo" color="dark"> Cerrar Sesion</ion-label> <br><br>
+
+    </div>
+
+<!-- 
+    <div style="text-align: end; margin: 10px;">
+      <ion-button  (click)="salir()"  class="normal" color="dark">salir</ion-button>
+    </div> -->
+
+  </div>
+
+  
+</ion-content>

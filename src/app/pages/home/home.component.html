@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo" >
+        E C O M O D A
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-slides>
+
+    <ion-slide *ngFor="let slide of slides" text-center>
+      
+      <div >
+        <img [src]="slide.img" class="slide-img">
+      </div>
+
+      <div>
+        <h3 [innerHTML]="slide.titulo" class="subtitulo"></h3>
+      </div>
+
+      <div class="descripcion">
+        <ion-label [innerHTML]="slide.descripcion" class="normal"> </ion-label>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>
+
+
+<ion-footer class="ion-no-border">
+ 
+  <ion-grid >
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-button [routerLink]="['/producto']" color="dark" expand="full" shape="round" class="btn-primary" mode="ios">
+          Ver productos
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" offset="3">
+
+        <ion-button [routerLink]="['/perfil']" expand="full" fill="clear">
+          <ion-label  color="dark">Inicia Sesion</ion-label>
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  
+
+</ion-footer>
+
+

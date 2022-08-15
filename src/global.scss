@@ -24,3 +24,23 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400&display=swap');
+
+.titulo{
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+
+.subtitulo{
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+.normal{
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 12px !important;
+    color: black !important;
+}

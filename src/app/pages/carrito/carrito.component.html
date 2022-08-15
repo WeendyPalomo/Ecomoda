@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo ion-text-wrap">
+        Mi Carrito
+    </ion-title>
+    
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+         <ion-icon color="dark" slot="icon-only"  name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/producto']" >
+        <ion-icon color="dark" slot="icon-only"  name="shirt-outline"></ion-icon>
+     </ion-button>
+    </ion-buttons>
+    
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <div *ngIf="carritoVacio">
+    <img src="../../../assets/img/carritoVacio.png">
+  </div> -->
+
+    <div *ngFor="let producto of pedido.productos">
+      <app-itemcarrito [productoPedido]="producto"></app-itemcarrito>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+        <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d; text-align: center">
+            Cantidad: {{cantidad}}
+        </ion-col>
+        <ion-col class="normal text-center" style="text-align: center;" size="6">
+          Total: {{total}}$
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="pedir()" expand="full" class="normal" style=" background-color: #2CD77A !important; color: #ffffff !important; text-align: center">
+          TRAMITAR PEDIDO
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
