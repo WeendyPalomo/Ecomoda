@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/firestore.service';
 import { FirestorageService } from '../../services/firestorage.service';
 import { Subscription } from 'rxjs';
 import { InteractionService } from 'src/app/services/interaction.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @Component({
   selector: 'app-perfil',
@@ -41,7 +42,8 @@ export class PerfilComponent implements OnInit {
               public firestorageService: FirestorageService,
               public loadingController: LoadingController,
               public toastController: ToastController,
-              private interaccion: InteractionService) {
+              private interaccion: InteractionService,
+              public modalController: ModalController) {
 
         this.firebaseauthService.stateAuth().subscribe( res => {
                 console.log(res);
@@ -159,6 +161,15 @@ export class PerfilComponent implements OnInit {
         this.interaccion.presentToastERROR('Usuario o contrasena invalidos.')
       });
    }
+
+    async openModal() {
+    console.log('this.cliente', this.cliente);
+    const modal = await this.modalController.create({
+      component: ResetPasswordComponent,
+      componentProps: {cliente: this.cliente}
+    });
+    return await modal.present();
+  }
 
 
 

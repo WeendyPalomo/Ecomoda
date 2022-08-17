@@ -72,7 +72,7 @@
       <ion-label class="normal">Minimo 8 caracteres incluyendo minusculas, <br> mayusculas y caracteres especiales.</ion-label>
     </ion-item>
 
-   <ion-label style="text-align: center; margin: 15px;" *ngIf="ingresarEnable" class="normal" color="dark">Olvidaste tu contrasena?</ion-label>
+  <b> <ion-label style="text-align: center; margin: 15px;" (click)="openModal()" *ngIf="ingresarEnable" class="normal" color="dark">Has olvidado tu contrasena?</ion-label> </b>
 
   
     <div style="text-align: center; margin: 10px;">

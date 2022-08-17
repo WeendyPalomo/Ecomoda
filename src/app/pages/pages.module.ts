@@ -17,7 +17,7 @@ import { CarritoComponent } from './carrito/carrito.component';
     HomeComponent,
     PerfilComponent,
     ProductoComponent,
-    CarritoComponent,
+    CarritoComponent
   ],
   imports: [
     CommonModule,

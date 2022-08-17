@@ -1,15 +1,17 @@
 <ion-card>
   <ion-img class="img-producto" [src]="producto.foto"></ion-img>
   <ion-item lines="full">
-    <ion-label class="subtitulo">{{producto.nombre}}
-      <br>
-      <p class="normal !important">Categoria: {{producto.categoria.nombreSub}}</p> 
+    <ion-label class="subtitulo">{{producto.nombre}}  
+    <ion-label class="normal !important" style="opacity: 0.7;margin-top: 5px;">
+      <ion-icon name="pricetags-outline"></ion-icon>
+      Categoria: {{producto.categoria.nombreSub}}
+    </ion-label> 
     </ion-label>
    
 
   </ion-item>
   <p class="precio">{{producto.precio}} $</p>
-  <p class="normal">{{producto.descripcion}}</p>
+  <p style="margin-left: 15px; margin-top: -3px;" class="normal">{{producto.descripcion}}</p>
   
   <ion-icon (click)="addCarrito()" class="icon-producto" name="add-outline"></ion-icon>
 

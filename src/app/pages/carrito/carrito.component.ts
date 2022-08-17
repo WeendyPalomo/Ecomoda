@@ -98,7 +98,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
     const uid = await this.firebaseauthService.getUid()
     const path = 'Clientes/' + uid + '/pedidos/' 
     console.log(' pedir() -> ', this.pedido, uid, path);
-    console.log(' pedir() -> ', this.pedido.productos);
+    console.log(' pedir() -> ', this.pedido.precioTotal);
 
     this.firestoreService.createDoc(this.pedido, path, this.pedido.id).then( () => {
          console.log('guadado con exito');
@@ -120,9 +120,9 @@ export class CarritoComponent implements OnInit, OnDestroy {
     console.log('OPEN LINK () ----> ',this.pedidoss);
 
     window.open(
-      'https://wa.me/+593997633026?text=Hola%20vengo%20de%20la%20app%20Ecomoda%20y%20me%20interesan%20los%20siguientes%20productos:%0D%0A'+
-      this.pedidoss+ 
-      '%20me%20ayudas%20con%20la%20forma%20forma%20de%20pago,%20me%20salio%20un%20total%20de%20*'+this.pedido.precioTotal+'$*','_system','location=yes');
+      'https://wa.me/+593997633026?text=Hola%20vengo%20de%20*Ecomoda*%20y%20me%20interesan%20algunos%20productos%20como%20'+
+      this.pedidoss+',%20etc.'+
+      '%0D%0AMe%20salio%20un%20total%20de%20*'+this.pedido.precioTotal+'$*%20escoji%20'+this.cantidad+'%20prendas,%20me%20ayudas%20con%20la%20forma%20forma%20de%20pago *(:*','_system','location=yes');
   }
 
 }
