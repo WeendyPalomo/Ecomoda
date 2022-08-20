@@ -56,23 +56,23 @@
   
     <ion-item>
       <ion-label class="normal" position="floating"> Nombre: </ion-label>
-      <ion-input  [(ngModel)]="newProducto.nombre" class="normal" type="string" inputmode="text"></ion-input>
+      <ion-input  [(ngModel)]="newProducto.nombre" class="normal" type="string" inputmode="text" require></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label class="normal" position="floating"> Precio: </ion-label>
-      <ion-input [(ngModel)]="newProducto.precio" class="normal" type="number" inputmode="numeric"></ion-input>
+      <ion-input [(ngModel)]="newProducto.precio" class="normal" type="number" inputmode="numeric" require></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label class="normal" position="floating"> Descripcion: </ion-label>
-      <ion-input [(ngModel)]="newProducto.descripcion" class="normal" type="string" inputmode="text"></ion-input>
+      <ion-input [(ngModel)]="newProducto.descripcion" class="normal" type="string" inputmode="text" require></ion-input>
     </ion-item>
   
     <ion-item>
        <ion-label class="normal">Categoria</ion-label>
-       <ion-select [(ngModel)]="newProducto.categoria" slot="end" class="normal" interface="popover">
-            <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">{{categoria.nombreSub}}</ion-select-option>
+       <ion-select [(ngModel)]="newProducto.categoria" slot="end" class="normal" interface="popover" require>
+            <ion-select-option *ngFor="let categoria of categorias" [value]="categoria" require>{{categoria.nombreSub}}</ion-select-option>
         </ion-select>
     </ion-item>
   

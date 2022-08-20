@@ -1,4 +1,6 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { Categoria, Producto } from 'src/app/models';
 import { FirestorageService } from 'src/app/services/firestorage.service';
@@ -31,6 +33,7 @@ export class SetProductosComponent implements OnInit {
     this.firestoreService.getCollection<Categoria>(path).subscribe(res=>{
       this.categorias = res;
     })
+   
   }
 
   constructor(
@@ -39,7 +42,8 @@ export class SetProductosComponent implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,
     public alertController: AlertController,
-    private firestorageService: FirestorageService
+    private firestorageService: FirestorageService,
+    private router:Router
     ) { }
 
   ngOnInit() {
@@ -59,13 +63,43 @@ export class SetProductosComponent implements OnInit {
     const name=this.newProducto.nombre;
     const res = await this.firestorageService.uploadImage(this.newFile,path,name);
     this.newProducto.foto = res;
+
+    this.loading.dismiss();
+
+    if(this.newProducto.categoria==null){
+      this.loading.dismiss();
+      console.log("no escojio categoria HERE");
+      this.toast('Escoja una categoria.','light')
+      this.enableNewProducto=true;
+      return this.break();
+    }else if(this.newProducto.nombre==""){
+      console.log("no tiene nombre HERE");
+      this.loading.dismiss();
+      this.toast('Escribir el nombre de su producto.','light')
+      this.enableNewProducto=true;
+      return this.break();
+    }else if(this.newProducto.precio==null){
+      console.log("sin precio HERE");
+      this.loading.dismiss();
+      this.toast('Ingrese el precio.','light')
+      this.enableNewProducto=true;
+      return this.break();
+    }
+
     this.firestoreService.createDoc(this.newProducto,this.path, this.newProducto.id).then(res=>{
         this.loading.dismiss();
-        this.presentToast('Guardado con exito!')
+        this.enableNewProducto=false;
+        this.presentToast('Guardado con exito!');
+
     }).catch(error=>{
-      this.presentToastERROR('Error: No se pudo guardar.')
+      this.loading.dismiss();
+      this.presentToastERROR('Error: No se pudo guardar.');
     });
-    this.enableNewProducto=false;
+
+  }
+
+  break(){
+      return this.router.navigate(['/set-productos']);
   }
 
   getProductos(){
@@ -132,8 +166,10 @@ export class SetProductosComponent implements OnInit {
   async presentToast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
-      cssClass: 'mensajeSuccess',
+      cssClass: 'normal',
+      position: 'top',
       color:'success',
+      mode:'ios',
       duration: 2000
     });
     toast.present();
@@ -162,7 +198,17 @@ export class SetProductosComponent implements OnInit {
 
   }
 
-
+  async toast(message, status){
+    const toast = await this.toastController.create({
+      message: message,
+      position: 'top',
+      color: status,
+      mode:'ios',
+      duration:2000,
+      cssClass: 'normal',
+    });
+    toast.present();
+  }
 
 
 
