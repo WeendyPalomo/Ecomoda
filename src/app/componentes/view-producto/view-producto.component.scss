@@ -26,18 +26,19 @@
 }
 
 .comentarios {
-    color: blue !important;
+    color: #000000 !important;
     background: #dae0e5;
     width: 133px;
     text-align: center;
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     padding-bottom: 4px;
     padding-top: 3px;
     font-size: 9px !important;
-
+    font-weight: bold;
+    opacity: 0.8;
     .icon{
-        font-size: 10px;
+        font-size: 15px !important;
         margin-bottom: -2px;
     }
 }
