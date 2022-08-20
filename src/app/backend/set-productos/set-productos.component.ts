@@ -61,8 +61,14 @@ export class SetProductosComponent implements OnInit {
     this.presentLoading();
     const path = 'Productos';
     const name=this.newProducto.nombre;
-    const res = await this.firestorageService.uploadImage(this.newFile,path,name);
-    this.newProducto.foto = res;
+    if (this.newFile !== undefined) {
+      const res = await this.firestorageService.uploadImage(this.newFile, path, name);
+      this.newProducto.foto = res;
+
+    }else{
+      console.log('imagen no definida')
+     
+    }
 
     this.loading.dismiss();
 
@@ -102,9 +108,9 @@ export class SetProductosComponent implements OnInit {
       return this.router.navigate(['/set-productos']);
   }
 
-  getProductos(){
-    this.firestoreService.getCollection<Producto>(this.path).subscribe( res=>{
-        this.productos=res;
+  getProductos() {
+    this.firestoreService.getCollection<Producto>(this.path).subscribe(  res => {
+           this.productos = res;
     });
   }
 
@@ -145,7 +151,7 @@ export class SetProductosComponent implements OnInit {
   nuevo(){
     this.enableNewProducto=true;
     this.newProducto={
-      foto:'',
+      foto:'htt',
       nombre: '',
       precio: null ,
       descripcion: '' ,
@@ -185,18 +191,17 @@ export class SetProductosComponent implements OnInit {
     toast.present();
   }
 
-  async newImageUpload(event: any){
-
-    if(event.target.files && event.target.files[0]){
-      this.newFile = event.target.files[0]; 
-      const reader = new FileReader();
-      reader.onload=((image)=>{
-        this.newProducto.foto = image.target.result as string;
-      });
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
-  }
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+        this.newFile = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = ((image) => {
+            this.newProducto.foto = image.target.result as string;
+           
+        });
+        reader.readAsDataURL(event.target.files[0]);
+      }
+}
 
   async toast(message, status){
     const toast = await this.toastController.create({
